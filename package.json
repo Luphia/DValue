@@ -1,0 +1,22 @@
+{
+  "name": "dvalue",
+  "version": "1.0.0",
+  "description": "A Default Value handler for javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "bin/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Luphia/DValue.git"
+  },
+  "keywords": [
+    "default"
+  ],
+  "author": "Luphia Chang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Luphia/DValue/issues"
+  },
+  "homepage": "https://github.com/Luphia/DValue#readme"
+}
