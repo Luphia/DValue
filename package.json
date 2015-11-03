@@ -1,6 +1,6 @@
 {
   "name": "dvalue",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Default Value handler for javascript",
   "main": "index.js",
   "scripts": {
