@@ -25,7 +25,7 @@ dvalue.guid = function () {
 dvalue.randomID = function (n) {
 	var ID = '';
 	var text = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-	n = parseInt(n); 
+	n = parseInt(n);
 	if(!(n > 0)) { n = 8; }
 	while(ID.length < n) {
 		ID = ID.concat(text.charAt(parseInt(Math.random() * text.length)));
@@ -51,6 +51,11 @@ dvalue.merge = function () {
 		else if(typeof(arguments[k]) != 'undefined') { rs.push(arguments[k]); }
 	}
 	return rs;
+};
+
+dvalue.distinct = function (arr) {
+	if(!Array.isArray(arr)) { return; }
+	return arr.filter(function (v, i, self) { return self.indexOf(v) === i; });
 };
 
 dvalue.default = function (config, defaultConfig) {
