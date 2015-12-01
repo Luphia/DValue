@@ -1,3 +1,5 @@
+(function(window) {
+
 var dvalue = function () {};
 dvalue.clone = function (obj) {
 	var rs;
@@ -92,3 +94,20 @@ dvalue.displayByte = function (n, unit) {
 };
 
 module.exports = dvalue;
+
+if (typeof exports !== "undefined") {
+		exports.dvalue = dvalue;
+}
+else {
+		window.dvalue = dvalue
+
+		if (typeof define === "function" && define.amd) {
+				define(function() {
+						return {
+								dvalue: dvalue,
+						}
+				})
+		}
+}
+
+})(typeof window === "undefined" ? this : window);

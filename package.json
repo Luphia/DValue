@@ -2,7 +2,7 @@
   "name": "dvalue",
   "version": "1.0.3",
   "description": "A Default Value handler for javascript",
-  "main": "index.js",
+  "main": "DValue.js",
   "scripts": {
     "test": "bin/test.js"
   },
