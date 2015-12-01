@@ -74,4 +74,21 @@ dvalue.default = function (config, defaultConfig) {
 	return config;
 };
 
+dvalue.displayByte = function (n, unit) {
+	var unit = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+	var base = 1024;
+	var n = parseInt(n) > 0? parseInt(n): 0;
+	var pow = parseInt(Math.log(n) / Math.log(1024));
+	var v, u;
+	if(unit[pow]) {
+		u = unit[pow]
+	}
+	else {
+		pow = unit.length - 1;
+		u = unit[pow];
+	}
+	v = parseInt(n / Math.pow(1024, pow) * 100) / 100;
+	return [v, u];
+};
+
 module.exports = dvalue;
