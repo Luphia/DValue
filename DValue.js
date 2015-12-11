@@ -93,6 +93,15 @@ dvalue.displayByte = function (n, unit) {
 	return [v, u];
 };
 
+dvalue.search = function (obj, arr) {
+	for(var i in arr) {
+    for(var j in obj) {
+      if(arr[i][j] != obj[j]) { continue; }
+      return arr[i];
+    }
+  }
+};
+
 module.exports = dvalue;
 
 if (typeof exports !== "undefined") {
