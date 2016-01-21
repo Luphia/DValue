@@ -102,6 +102,15 @@ dvalue.search = function (obj, arr) {
   }
 };
 
+dvalue.XOR = function (content, key) {
+	if(!Buffer.isBuffer(content) || !Buffer.isBuffer(key)) { return false; }
+	var res = [];
+	for(var i = 0; i < content.length; i++) {
+		res.push(content[i] ^ key[i % key.length]);
+	}
+	return new Buffer(res);
+};
+
 module.exports = dvalue;
 
 if (typeof exports !== "undefined") {
