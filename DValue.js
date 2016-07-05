@@ -260,12 +260,21 @@ dvalue.displayByte = function (n, unit) {
 };
 
 dvalue.search = function (obj, arr) {
+	var isMapping = function (obj1, obj2) {
+		if(obj2 === undefined) { return false; }
+		else if(typeof(obj1) == 'object') {
+			for(var k in obj1) {
+				if(!isMapping(obj1[k], obj2[k])) { return false; }
+			}
+			return true;
+		}
+		else {
+			return obj1 == obj2;
+		}
+	};
 	for(var i in arr) {
-    for(var j in obj) {
-      if(arr[i][j] != obj[j]) { continue; }
-      return arr[i];
-    }
-  }
+		if(isMapping(obj, arr[i])) { return arr[i]; }
+	}
 };
 
 dvalue.XOR = function (content, key) {
@@ -280,18 +289,18 @@ dvalue.XOR = function (content, key) {
 module.exports = dvalue;
 
 if (typeof exports !== "undefined") {
-		exports.dvalue = dvalue;
+	exports.dvalue = dvalue;
 }
 else {
-		window.dvalue = dvalue
+	window.dvalue = dvalue
 
-		if (typeof define === "function" && define.amd) {
-				define(function() {
-						return {
-								dvalue: dvalue,
-						}
-				})
-		}
+	if (typeof define === "function" && define.amd) {
+		define(function() {
+			return {
+				dvalue: dvalue
+			}
+		})
+	}
 }
 
 })(typeof window === "undefined" ? this : window);
