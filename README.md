@@ -65,6 +65,13 @@ var ID = dvalue.randomID();
 ```
 > 8FUoTTCG
 
+### Generate Random Code
+```node
+var dvalue = require('dvalue');
+var code = dvalue.randomCode(16, {number: 5, lower: 3, upper: 1, symbol: 0});
+```
+> l7d8vf6JgbQpaf19
+
 ### Display Data Size
 ```node
 var dvalue = require('dvalue');

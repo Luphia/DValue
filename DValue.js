@@ -35,6 +35,21 @@ dvalue.randomID = function (n) {
 	return ID;
 };
 
+dvalue.randomCode = function (n, options) {
+	var code = '', tmparr = [], tmpstring, text = ['0123456789', 'abcdefghijklmnopqrstuvwxyz', 'ABCDEFGHIJKLMNOPQRSTUVWXY', '~!@#$%^&*()_+-=,./<>?;:[]{}|\\/\'"'];
+	if(!(n > 0)) { n = 8; }
+	options = options || {number: 1, lower: 1, upper: 0, symbol: 0};
+	for(var k = 0; k < options.number; k++) { tmparr.push(text[0]); }
+	for(var k = 0; k < options.lower; k++) { tmparr.push(text[1]); }
+	for(var k = 0; k < options.upper; k++) { tmparr.push(text[2]); }
+	for(var k = 0; k < options.symbol; k++) { tmparr.push(text[3]); }
+	tmpstring = tmparr.join('');
+	while(code.length < n) {
+		code = code.concat(tmpstring.charAt(parseInt(Math.random() * tmpstring.length)));
+	}
+	return code;
+}
+
 dvalue.randomPick = function (arr, n) {
 	if(!Array.isArray(arr)) { return []; }
 	var tmp = this.clone(arr);
