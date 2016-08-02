@@ -82,6 +82,7 @@ dvalue.default = function (config, defaultConfig) {
 			var v = defaultConfig[k];
 			if(typeof(v) == 'object') { config[k] = this.default(config[k], v); }
 			else if(config[k] === undefined) { config[k] = v; }
+			else if(typeof(config[k]) != typeof(v)) { config[k] = v; }
 		}
 	}
 	else {
