@@ -276,6 +276,7 @@ dvalue.displayByte = function (n, unit) {
 };
 
 dvalue.search = function (obj, arr) {
+	if(Array.isArray(obj) && !Array.isArray(arr)) { return this.search(arr, obj); }
 	var isMapping = function (obj1, obj2) {
 		if(obj2 === undefined) { return false; }
 		else if(typeof(obj1) == 'object') {
