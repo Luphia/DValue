@@ -51,6 +51,14 @@ var find = dvalue.search(arr, {id: 2});
 ```
 > {"id": 2, "name": "Cori"}
 
+### Search multi Objects In Array
+```node
+var dvalue = require('dvalue');
+var arr = [{id: 0, name: 'Alan'}, {id: 1, name: 'Becca'}, {id: 2, name: 'Cori'}, {id: 3, name: 'David'}, {id: 4, name: 'Cori'}];
+var find = dvalue.search(arr, {name: 'Cori'});
+```
+> [{"id": 2, "name": "Cori"}, {"id": 4, "name": "Cori"}]
+
 ### Generate GUID
 ```node
 var dvalue = require('dvalue');

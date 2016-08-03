@@ -275,8 +275,8 @@ dvalue.displayByte = function (n, unit) {
 	return [v, u];
 };
 
-dvalue.search = function (obj, arr) {
-	if(Array.isArray(obj) && !Array.isArray(arr)) { return this.search(arr, obj); }
+dvalue.search = function (arr, obj) {
+	if(Array.isArray(obj) && !Array.isArray(arr)) { return this.search(obj, arr); }
 	var isMapping = function (obj1, obj2) {
 		if(obj2 === undefined) { return false; }
 		else if(typeof(obj1) == 'object') {
@@ -292,6 +292,27 @@ dvalue.search = function (obj, arr) {
 	for(var i in arr) {
 		if(isMapping(obj, arr[i])) { return arr[i]; }
 	}
+};
+
+dvalue.multiSearch = function (arr, obj) {
+	if(Array.isArray(obj) && !Array.isArray(arr)) { return this.multiSearch(obj, arr); }
+	var result = [];
+	var isMapping = function (obj1, obj2) {
+		if(obj2 === undefined) { return false; }
+		else if(typeof(obj1) == 'object') {
+			for(var k in obj1) {
+				if(!isMapping(obj1[k], obj2[k])) { return false; }
+			}
+			return true;
+		}
+		else {
+			return obj1 == obj2;
+		}
+	};
+	for(var i in arr) {
+		if(isMapping(obj, arr[i])) { result.push(arr[i]); }
+	}
+	return result;
 };
 
 dvalue.XOR = function (content, key) {
