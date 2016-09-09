@@ -76,7 +76,7 @@ dvalue.distinct = function (arr) {
 };
 
 dvalue.default = function (config, defaultConfig) {
-	if(typeof(defaultConfig) == 'object') {
+	if(typeof(defaultConfig) == 'object' && defaultConfig != null) {
 		if(config == undefined) { config = Array.isArray(defaultConfig)? []: {}; }
 		for(var k in defaultConfig) {
 			var v = defaultConfig[k];
