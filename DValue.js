@@ -91,6 +91,19 @@ dvalue.default = function (config, defaultConfig) {
 	return config;
 };
 
+dvalue.shuffle = function (arr) {
+	var j, x, i;
+	for (i = (arr.length - 1); i; i--) {
+		j = Math.floor(Math.random() * arr.length);
+		x = arr[i];
+		console.log(i, a[i]);
+		console.log(j, a[j]);
+		arr[i] = arr[j];
+		arr[j] = x;
+	}
+	return arr;
+};
+
 dvalue.sprintf = (function() {
 	function get_type(variable) {
 		return Object.prototype.toString.call(variable).slice(8, -1).toLowerCase();

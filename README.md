@@ -43,6 +43,14 @@ var picks = dvalue.randomPick(arr, 2);
 ```
 > [ 9, 5 ]
 
+### Shuffle
+```node
+var dvalue = require('dvalue');
+var arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+dvalue.shuffle(arr);
+```
+>> [5, 9, 1, 6, 3, 7, 8, 0, 4, 2]
+
 ### Search Object In Array
 ```node
 var dvalue = require('dvalue');
