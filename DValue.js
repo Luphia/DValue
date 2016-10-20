@@ -96,8 +96,6 @@ dvalue.shuffle = function (arr) {
 	for (i = (arr.length - 1); i; i--) {
 		j = Math.floor(Math.random() * arr.length);
 		x = arr[i];
-		console.log(i, a[i]);
-		console.log(j, a[j]);
 		arr[i] = arr[j];
 		arr[j] = x;
 	}
