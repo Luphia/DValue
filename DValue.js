@@ -334,6 +334,41 @@ dvalue.XOR = function (content, key) {
 	return new Buffer(res);
 };
 
+dvalue.CRC32 = function(buffer) {
+	var CRCTable = (function() {
+		var c = 0, table = new Array(256);
+
+		for(var n = 0; n != 256; ++n) {
+			c = n;
+			c = ((c&1) ? (-306674912 ^ (c >>> 1)) : (c >>> 1));
+			c = ((c&1) ? (-306674912 ^ (c >>> 1)) : (c >>> 1));
+			c = ((c&1) ? (-306674912 ^ (c >>> 1)) : (c >>> 1));
+			c = ((c&1) ? (-306674912 ^ (c >>> 1)) : (c >>> 1));
+			c = ((c&1) ? (-306674912 ^ (c >>> 1)) : (c >>> 1));
+			c = ((c&1) ? (-306674912 ^ (c >>> 1)) : (c >>> 1));
+			c = ((c&1) ? (-306674912 ^ (c >>> 1)) : (c >>> 1));
+			c = ((c&1) ? (-306674912 ^ (c >>> 1)) : (c >>> 1));
+			table[n] = c;
+		}
+
+		return typeof Int32Array !== 'undefined' ? new Int32Array(table) : table;
+	})();
+	var b, crc, i, len, code;
+	if(!Buffer.isBuffer(buffer)) { buffer = new Buffer(new String(buffer)); }
+	if(buffer.length > 10000) return CRC32_8(buffer);
+
+	for(var crc = -1, i = 0, len = buffer.length - 3; i < len;) {
+		crc = (crc >>> 8) ^ CRCTable[(crc ^ buffer[i++])&0xFF];
+		crc = (crc >>> 8) ^ CRCTable[(crc ^ buffer[i++])&0xFF];
+		crc = (crc >>> 8) ^ CRCTable[(crc ^ buffer[i++])&0xFF];
+		crc = (crc >>> 8) ^ CRCTable[(crc ^ buffer[i++])&0xFF];
+	}
+	while(i < len + 3) { crc = (crc >>> 8) ^ CRCTable[(crc ^ buffer[i++]) & 0xFF]; }
+	code = (crc > 0? crc: crc * -1).toString(16);
+	while(code.length < 8) { code = '0' + code; }
+	return code;
+};
+
 module.exports = dvalue;
 
 if (typeof exports !== "undefined") {
