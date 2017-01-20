@@ -377,6 +377,13 @@ dvalue.hashPassword = function (password) {
 		salt: salt
 	};
 };
+dvalue.checkPassword = function (options) {
+	options = options || {};
+	var password = options.password || "";
+	var salt = options.salt || "";
+	var hash = options.hash || "";
+	return require('crypto').createHash('sha1').update(password).update(salt).digest("hex") == hash;
+};
 
 module.exports = dvalue;
 
