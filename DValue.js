@@ -334,7 +334,7 @@ dvalue.XOR = function (content, key) {
 	return new Buffer(res);
 };
 
-dvalue.CRC32 = function(buffer) {
+dvalue.CRC32 = function (buffer) {
 	var CRCTable = (function() {
 		var c = 0, table = new Array(256);
 
@@ -367,6 +367,15 @@ dvalue.CRC32 = function(buffer) {
 	code = (crc > 0? crc: crc * -1).toString(16);
 	while(code.length < 8) { code = '0' + code; }
 	return code;
+};
+
+dvalue.hashPassword = function (password) {
+	var salt = this.randomID();
+	password = password || "";
+	return {
+		hash: require('crypto').createHash('sha1').update(password).update(salt).digest("hex"),
+		salt: salt
+	};
 };
 
 module.exports = dvalue;
